@@ -6,7 +6,9 @@ from typing import Optional, List
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-import sqlite3, time, os
+import time, os
+import psycopg2
+from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,8 +33,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 # ── Veritabanı ──────────────────────────────────────────
 
 def get_db():
-    conn = sqlite3.connect("yappio.db")
-    conn.row_factory = sqlite3.Row
+    conn = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
     return conn
 
 def init_db():
