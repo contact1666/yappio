@@ -33,7 +33,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 # ── Veritabanı ──────────────────────────────────────────
 
 def get_db():
-    conn = sqlite3.connect("yappio.db")
+    conn = sqlite3.connect("/app/data/yappio.db")
     conn.row_factory = sqlite3.Row
     return conn
 
