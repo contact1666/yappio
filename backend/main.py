@@ -7,8 +7,9 @@ from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 import time, os
-import psycopg2
+import psycopg2.extras
 from psycopg2.extras import RealDictCursor
+import psycopg2
 from dotenv import load_dotenv
 
 load_dotenv()
