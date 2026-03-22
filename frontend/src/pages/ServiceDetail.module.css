@@ -1,0 +1,22 @@
+.page { padding: 2rem 0 3rem; min-height: calc(100vh - 62px); }
+.layout { display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; align-items: start; }
+.header { padding: 1.5rem; margin-bottom: 1rem; }
+.headerTop { display: flex; align-items: flex-start; gap: 16px; }
+.avatar { width: 60px; height: 60px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; color: #fff; flex-shrink: 0; }
+.title { font-size: 22px; font-weight: 800; color: #1C2B1A; margin-bottom: 4px; }
+.ownerName { font-size: 14px; color: #8BA88A; }
+.descCard { padding: 1.5rem; margin-bottom: 1rem; }
+.secTitle { font-size: 16px; font-weight: 700; color: #1C2B1A; margin-bottom: 1rem; }
+.desc { font-size: 14px; color: #6B8A68; line-height: 1.8; white-space: pre-wrap; }
+.review { padding: 12px 0; border-bottom: 1px solid #EEF2EC; }
+.review:last-child { border-bottom: none; }
+.reviewTop { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.reviewAv { width: 32px; height: 32px; border-radius: 8px; background: #1C3A1A; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #fff; flex-shrink: 0; }
+.reviewName { font-size: 13px; font-weight: 700; color: #1C2B1A; }
+.reviewForm { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #EEF2EC; }
+.applyCard { padding: 1.5rem; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 10px; }
+.price { font-size: 26px; font-weight: 800; color: #1C3A1A; }
+.infoCard { padding: 1.2rem; }
+.infoRow { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #EEF2EC; }
+.infoRow:last-child { border-bottom: none; }
+@media (max-width: 768px) { .layout { grid-template-columns: 1fr; } aside { order: -1; } }

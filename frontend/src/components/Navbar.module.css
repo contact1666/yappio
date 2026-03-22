@@ -1,0 +1,20 @@
+.nav { background: #1C3A1A; border-bottom: 3px solid #2E6B2A; position: sticky; top: 0; z-index: 100; }
+.inner { display: flex; align-items: center; height: 62px; gap: 2rem; }
+.logo { display: flex; align-items: center; gap: 9px; color: #fff; font-size: 19px; font-weight: 800; text-decoration: none; flex-shrink: 0; }
+.logoMark { width: 34px; height: 34px; background: #5A9E3A; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; }
+.logoSub { display: block; font-size: 9px; color: #8BC47A; letter-spacing: 0.08em; font-weight: 500; line-height: 1; }
+.links { display: flex; gap: 2px; flex: 1; }
+.link { color: rgba(255,255,255,0.65); font-size: 14px; padding: 6px 12px; border-radius: 7px; transition: all 0.15s; font-weight: 500; }
+.link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.link.active { color: #fff; }
+.actions { display: flex; align-items: center; gap: 8px; }
+.iconBtn { font-size: 18px; padding: 4px 8px; border-radius: 7px; transition: background 0.15s; }
+.iconBtn:hover { background: rgba(255,255,255,0.1); }
+.userMenu { position: relative; }
+.avatar { width: 34px; height: 34px; background: #5A9E3A; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff; cursor: pointer; }
+.dropdown { display: none; position: absolute; right: 0; top: 42px; background: #fff; border: 1px solid #dde8d8; border-radius: 10px; padding: 6px; min-width: 170px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.userMenu:hover .dropdown { display: flex; flex-direction: column; gap: 2px; }
+.dropdown a, .dropdown button { display: block; padding: 8px 12px; border-radius: 7px; font-size: 13px; font-weight: 500; color: #1C2B1A; transition: background 0.12s; background: none; border: none; text-align: left; width: 100%; cursor: pointer; font-family: inherit; }
+.dropdown a:hover, .dropdown button:hover { background: #F2F5F0; }
+.dropdown hr { border: none; border-top: 1px solid #EEF2EC; margin: 4px 0; }
+@media (max-width: 640px) { .links { display: none; } }
