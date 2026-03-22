@@ -25,7 +25,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__rounds=12)oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__rounds=12)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 # ── Veritabanı ──────────────────────────────────────────
 
