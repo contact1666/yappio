@@ -33,7 +33,8 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 # ── Veritabanı ──────────────────────────────────────────
 
 def get_db():
-    conn = psycopg2.connect(os.getenv("DATABASE_URL"), cursor_factory=RealDictCursor)
+    conn = sqlite3.connect("/data/yappio.db")
+    conn.row_factory = sqlite3.Row
     return conn
 
 def init_db():
