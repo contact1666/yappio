@@ -309,22 +309,18 @@ def add_review(r: ReviewCreate, u=Depends(get_current_user)):
 def conversations(u=Depends(get_current_user)):
     db = get_db()
     rows = db.execute("""
-        SELECT DISTINCT
+        SELECT
             CASE WHEN m.sender_id=? THEN m.receiver_id ELSE m.sender_id END as other_id,
             u.name as other_name,
-            (SELECT content FROM messages WHERE
-                (sender_id=? AND receiver_id=other_id) OR (sender_id=other_id AND receiver_id=?)
-                ORDER BY created_at DESC LIMIT 1) as last_message,
-            (SELECT created_at FROM messages WHERE
-                (sender_id=? AND receiver_id=other_id) OR (sender_id=other_id AND receiver_id=?)
-                ORDER BY created_at DESC LIMIT 1) as last_time
+            m.content as last_message,
+            m.created_at as last_time
         FROM messages m
         JOIN users u ON u.id = CASE WHEN m.sender_id=? THEN m.receiver_id ELSE m.sender_id END
         WHERE m.sender_id=? OR m.receiver_id=?
-        GROUP BY other_id ORDER BY last_time DESC
-    """, (u["id"],)*8).fetchall()
+        GROUP BY other_id
+        ORDER BY last_time DESC
+    """, (u["id"], u["id"], u["id"], u["id"])).fetchall()
     return [dict(r) for r in rows]
-
 @app.get("/messages/{other_id}")
 def get_messages(other_id: int, u=Depends(get_current_user)):
     db = get_db()
