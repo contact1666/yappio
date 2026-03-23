@@ -10,10 +10,9 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <div className={`container ${styles.inner}`}>
-        {/* LOGO KISMI BURADA YANİ İSME GÖRE GÜNCELLENDİ */}
         <Link to="/" className={styles.logo}>
           <img 
-            src="/yappio.png" 
+            src="/yappio.png?v=2" 
             alt="Yappio Logo" 
             style={{ height: '40px', width: 'auto', objectFit: 'contain' }} 
           />
