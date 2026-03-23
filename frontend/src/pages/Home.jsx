@@ -94,52 +94,50 @@ export default function Home() {
           </main>
         </div>
       </div>
-    </div>
 
-    {/* Nasıl Çalışır */}
-    <div className={styles.howSection}>
-      <div className="container">
-        <div className={styles.sectionHead}>
-          <h2 className={styles.sectionTitle}>Nasıl Çalışır?</h2>
-          <p className={styles.sectionSub}>Hizmet arıyor musunuz, yoksa vermek mi istiyorsunuz?</p>
-        </div>
-        <div className={styles.howGrid}>
-          <div className={styles.howCard}>
-            <div className={styles.howCardTitle}>🔍 Hizmet Arayanlar</div>
-            <div className={styles.howSteps}>
-              <div className={styles.howStep}><div className={styles.howNum}>1</div><div><strong>İhtiyacını Belirt</strong><p>Ne yaptırmak istediğini yaz, Bursa'daki ilçeni seç.</p></div></div>
-              <div className={styles.howStep}><div className={styles.howNum}>2</div><div><strong>Teklifleri Karşılaştır</strong><p>Hizmet verenlerle mesajlaş, fiyat ve yorumları incele.</p></div></div>
-              <div className={styles.howStep}><div className={styles.howNum}>3</div><div><strong>İşini Hallettir</strong><p>Randevu al, iş bitince değerlendir.</p></div></div>
-            </div>
+      <div className={styles.howSection}>
+        <div className="container">
+          <div className={styles.sectionHead}>
+            <h2 className={styles.sectionTitle}>Nasıl Çalışır?</h2>
+            <p className={styles.sectionSub}>Hizmet arıyor musunuz, yoksa vermek mi istiyorsunuz?</p>
           </div>
-          <div className={styles.howCard}>
-            <div className={styles.howCardTitle}>💼 Hizmet Verenler</div>
-            <div className={styles.howSteps}>
-              <div className={styles.howStep}><div className={styles.howNum}>1</div><div><strong>Ücretsiz Kaydol</strong><p>5 dakikada profilini oluştur, hizmetlerini ekle.</p></div></div>
-              <div className={styles.howStep}><div className={styles.howNum}>2</div><div><strong>Müşteri Bul</strong><p>Bursa'daki binlerce kişiye ulaş, tekliflerini gönder.</p></div></div>
-              <div className={styles.howStep}><div className={styles.howNum}>3</div><div><strong>Kazan</strong><p>İşi tamamla, değerlendirme al, güvenilirliğini artır.</p></div></div>
+          <div className={styles.howGrid}>
+            <div className={styles.howCard}>
+              <div className={styles.howCardTitle}>🔍 Hizmet Arayanlar</div>
+              <div className={styles.howSteps}>
+                <div className={styles.howStep}><div className={styles.howNum}>1</div><div><strong>İhtiyacını Belirt</strong><p>Ne yaptırmak istediğini yaz, Bursa'daki ilçeni seç.</p></div></div>
+                <div className={styles.howStep}><div className={styles.howNum}>2</div><div><strong>Teklifleri Karşılaştır</strong><p>Hizmet verenlerle mesajlaş, fiyat ve yorumları incele.</p></div></div>
+                <div className={styles.howStep}><div className={styles.howNum}>3</div><div><strong>İşini Hallettir</strong><p>Randevu al, iş bitince değerlendir.</p></div></div>
+              </div>
+            </div>
+            <div className={styles.howCard}>
+              <div className={styles.howCardTitle}>💼 Hizmet Verenler</div>
+              <div className={styles.howSteps}>
+                <div className={styles.howStep}><div className={styles.howNum}>1</div><div><strong>Ücretsiz Kaydol</strong><p>5 dakikada profilini oluştur, hizmetlerini ekle.</p></div></div>
+                <div className={styles.howStep}><div className={styles.howNum}>2</div><div><strong>Müşteri Bul</strong><p>Bursa'daki binlerce kişiye ulaş, tekliflerini gönder.</p></div></div>
+                <div className={styles.howStep}><div className={styles.howNum}>3</div><div><strong>Kazan</strong><p>İşi tamamla, değerlendirme al, güvenilirliğini artır.</p></div></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    {/* Biz Kimiz */}
-    <div className={styles.aboutSection}>
-      <div className="container">
-        <div className={styles.aboutInner}>
-          <div className={styles.aboutLeft}>
-            <div className={styles.aboutTag}>Biz Kimiz?</div>
-            <h2 className={styles.aboutTitle}>Yappio, 2026 yılında<br /><em>Bursa'da doğdu.</em></h2>
-            <p className={styles.aboutText}>Yappio, 2026 yılında Bursa'da doğan yerel bir hizmet platformudur. Temizlikten özel derse, tadilattan nakliyata kadar Bursa'nın dört bir yanındaki hizmet verenlerini ihtiyaç sahipleriyle buluşturuyoruz.</p>
-            <p className={styles.aboutText}>Binlerce Bursalı artık Yappio'ya güveniyor. Çünkü biz sadece bir platform değil, Bursa'nın dijital mahalle kültürüyüz.</p>
-            <div className={styles.aboutSlogan}>Güvenilir. Yerel. Yappio.</div>
-          </div>
-          <div className={styles.aboutRight}>
-            <div className={styles.aboutStat}><div className={styles.aboutStatNum}>1.240+</div><div className={styles.aboutStatLbl}>Hizmet Veren</div></div>
-            <div className={styles.aboutStat}><div className={styles.aboutStatNum}>8.500+</div><div className={styles.aboutStatLbl}>Tamamlanan İş</div></div>
-            <div className={styles.aboutStat}><div className={styles.aboutStatNum}>8</div><div className={styles.aboutStatLbl}>Bursa İlçesi</div></div>
-            <div className={styles.aboutStat}><div className={styles.aboutStatNum}>4.8/5</div><div className={styles.aboutStatLbl}>Müşteri Puanı</div></div>
+      <div className={styles.aboutSection}>
+        <div className="container">
+          <div className={styles.aboutInner}>
+            <div className={styles.aboutLeft}>
+              <div className={styles.aboutTag}>Biz Kimiz?</div>
+              <h2 className={styles.aboutTitle}>Yappio, 2026 yılında<br /><em>Bursa'da doğdu.</em></h2>
+              <p className={styles.aboutText}>Yappio, 2026 yılında Bursa'da doğan yerel bir hizmet platformudur. Temizlikten özel derse, tadilattan nakliyata kadar Bursa'nın dört bir yanındaki hizmet verenlerini ihtiyaç sahipleriyle buluşturuyoruz.</p>
+              <p className={styles.aboutText}>Binlerce Bursalı artık Yappio'ya güveniyor. Çünkü biz sadece bir platform değil, Bursa'nın dijital mahalle kültürüyüz.</p>
+              <div className={styles.aboutSlogan}>Güvenilir. Yerel. Yappio.</div>
+            </div>
+            <div className={styles.aboutRight}>
+              <div className={styles.aboutStat}><div className={styles.aboutStatNum}>1.240+</div><div className={styles.aboutStatLbl}>Hizmet Veren</div></div>
+              <div className={styles.aboutStat}><div className={styles.aboutStatNum}>8.500+</div><div className={styles.aboutStatLbl}>Tamamlanan İş</div></div>
+              <div className={styles.aboutStat}><div className={styles.aboutStatNum}>8</div><div className={styles.aboutStatLbl}>Bursa İlçesi</div></div>
+              <div className={styles.aboutStat}><div className={styles.aboutStatNum}>4.8/5</div><div className={styles.aboutStatLbl}>Müşteri Puanı</div></div>
+            </div>
           </div>
         </div>
       </div>

@@ -155,6 +155,8 @@ def create_token(data):
     d["exp"] = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     return jwt.encode(d, SECRET_KEY, algorithm=ALGORITHM)
 
+ADMIN_EMAILS = ["contact1666@gmail.com"]
+
 def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -163,7 +165,10 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         db = get_db()
         user = db.execute("SELECT * FROM users WHERE id=?", (uid,)).fetchone()
         if not user: raise HTTPException(status_code=401, detail="Kullanıcı bulunamadı")
-        return dict(user)
+        result = dict(user)
+        if result["email"] in ADMIN_EMAILS:
+            result["role"] = "admin"
+        return result
     except JWTError:
         raise HTTPException(status_code=401, detail="Geçersiz token")
 
@@ -263,7 +268,7 @@ def update_service(sid: int, s: ServiceCreate, u=Depends(get_current_user)):
     db = get_db()
     svc = db.execute("SELECT * FROM services WHERE id=?", (sid,)).fetchone()
     if not svc: raise HTTPException(404, "Bulunamadı")
-    if svc["owner_id"] != u["id"]: raise HTTPException(403, "Yetkiniz yok")
+    if svc["owner_id"] != u["id"] and u.get("role") != "admin": raise HTTPException(403, "Yetkiniz yok")
     db.execute("UPDATE services SET title=?,category=?,description=?,price=?,price_unit=?,ilce=?,logo_url=? WHERE id=?",
                (s.title, s.category, s.description, s.price, s.price_unit, s.ilce, s.logo_url, sid))
     db.commit()
@@ -274,7 +279,7 @@ def delete_service(sid: int, u=Depends(get_current_user)):
     db = get_db()
     svc = db.execute("SELECT * FROM services WHERE id=?", (sid,)).fetchone()
     if not svc: raise HTTPException(404, "Bulunamadı")
-    if svc["owner_id"] != u["id"]: raise HTTPException(403, "Yetkiniz yok")
+    if svc["owner_id"] != u["id"] and u.get("role") != "admin": raise HTTPException(403, "Yetkiniz yok")
     db.execute("DELETE FROM services WHERE id=?", (sid,))
     db.commit()
     return {"message": "Hizmet silindi"}

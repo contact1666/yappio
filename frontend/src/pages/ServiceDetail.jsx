@@ -1,7 +1,6 @@
-// ServiceDetail.jsx
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getService, addReview, sendMessage } from '../api'
+import { getService, addReview, sendMessage, deleteService } from '../api'
 import { useAuth } from '../hooks/useAuth'
 import styles from './ServiceDetail.module.css'
 
@@ -38,12 +37,25 @@ export default function ServiceDetail() {
     setSent(true)
   }
 
+  const handleDelete = async () => {
+    if (!window.confirm('Bu ilanı silmek istediğinizden emin misiniz?')) return
+    try {
+      await deleteService(svc.id)
+      navigate('/')
+    } catch (err) {
+      alert('İlan silinemedi: ' + (err.response?.data?.detail || 'Hata'))
+    }
+  }
+
   if (loading) return <div style={{ textAlign: 'center', padding: '4rem', color: '#8BA88A' }}>Yükleniyor...</div>
   if (!svc) return null
 
   const color = COLORS[svc.id % COLORS.length]
   const initials = svc.owner_name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
   const rating = svc.avg_rating ? Number(svc.avg_rating).toFixed(1) : null
+  const isOwner = user && user.id === svc.owner_id
+  const isAdmin = user && user.role === 'admin'
+  const canDelete = isOwner || isAdmin
 
   return (
     <div className={styles.page}>
@@ -54,15 +66,25 @@ export default function ServiceDetail() {
             <div className={`card ${styles.header}`}>
               <div className={styles.headerTop}>
                 <div className={styles.avatar} style={{ background: color }}>{initials}</div>
-                <div>
+                <div style={{ flex: 1 }}>
                   <h1 className={styles.title}>{svc.title}</h1>
                   <div className={styles.ownerName}>{svc.owner_name}</div>
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
                     <span className="badge badge-green">{svc.category}</span>
                     {svc.ilce && <span className="badge badge-gray">📍 {svc.ilce}</span>}
                     {rating && <span className="badge badge-amber">⭐ {rating} ({svc.review_count} yorum)</span>}
+                    {isAdmin && <span className="badge" style={{ background: '#FEE2E2', color: '#DC2626' }}>👑 Admin</span>}
                   </div>
                 </div>
+                {canDelete && (
+                  <button
+                    onClick={handleDelete}
+                    className="btn btn-sm"
+                    style={{ background: '#DC2626', color: '#fff', alignSelf: 'flex-start' }}
+                  >
+                    🗑 Sil
+                  </button>
+                )}
               </div>
             </div>
 
@@ -107,7 +129,7 @@ export default function ServiceDetail() {
           <aside>
             <div className={`card ${styles.applyCard}`}>
               <div className={styles.price}>{svc.price} TL<span style={{ fontSize: 14, fontWeight: 400, color: '#8BA88A' }}>/{svc.price_unit}</span></div>
-              {user && user.id !== svc.owner_id ? (
+              {user && user.id !== svc.owner_id && !isAdmin ? (
                 sent ? <div className="success-msg">✓ Mesajınız gönderildi!</div> :
                 showMsg ? (
                   <form onSubmit={handleMsg}>
@@ -118,13 +140,15 @@ export default function ServiceDetail() {
                 ) : (
                   <>
                     <button className="btn btn-dark btn-full" style={{ marginBottom: 8 }} onClick={() => setShowMsg(true)}>💬 Mesaj Gönder</button>
-                    <button className="btn btn-outline btn-full" onClick={() => navigate(`/messages`)}>Teklif Al</button>
+                    <button className="btn btn-outline btn-full" onClick={() => navigate('/messages')}>Teklif Al</button>
                   </>
                 )
               ) : !user ? (
                 <button className="btn btn-dark btn-full" onClick={() => navigate('/login')}>Giriş Yap</button>
+              ) : isAdmin ? (
+                <button className="btn btn-sm btn-full" style={{ background: '#DC2626', color: '#fff' }} onClick={handleDelete}>🗑 İlanı Sil</button>
               ) : (
-                <button className="btn btn-outline btn-full" onClick={() => navigate(`/create`)}>Düzenle</button>
+                <button className="btn btn-outline btn-full" onClick={() => navigate('/create')}>Düzenle</button>
               )}
             </div>
             <div className={`card ${styles.infoCard}`}>
